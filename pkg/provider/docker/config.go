@@ -338,9 +338,7 @@ func (p *DynConfBuilder) getIPPort(ctx context.Context, container dockerData, se
 		case portBinding.HostIP.IsUnspecified() || !portBinding.HostIP.IsValid():
 			logger.Info().Msgf("Cannot determine the IP address (got %q) for %q's binding, falling back on its internal IP/Port.", portBinding.HostIP, container.Name)
 		default:
-			if hostIP := portBinding.HostIP; hostIP.IsValid() {
-				ip = portBinding.HostIP.String()
-			}
+			ip = portBinding.HostIP.String()
 			port = portBinding.HostPort
 			usedBound = true
 		}
